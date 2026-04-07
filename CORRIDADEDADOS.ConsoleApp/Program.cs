@@ -15,6 +15,8 @@ entre 1 e 6).
 ○ O número gerado é somado à posição atual do competidor.
 ○ O jogo exibe a posição atual do jogador e do computador após cada rodada.
 
+3. Condição de Vitória:
+○ O primeiro competidor a alcançar ou ultrapassar a posição final (ex.: 30) vence o jogo.
 */
 int linhaDeChegada = 30;
 int posicaoJogador = 0;
