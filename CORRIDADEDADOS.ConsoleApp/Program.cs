@@ -15,25 +15,52 @@ entre 1 e 6).
 ○ O número gerado é somado à posição atual do competidor.
 ○ O jogo exibe a posição atual do jogador e do computador após cada rodada.
 
-3. Condição de Vitória:
-○ O primeiro competidor a alcançar ou ultrapassar a posição final (ex.: 30) vence o jogo.
-
-4. Interação:
-○ O jogador rola o dado pressionando uma tecla (ex.: Enter).
-○ O computador rola o dado automaticamente no seu turno.
-
-    Dificuldades e Conceitos Envolvidos:
-    -   Geração de números aleatórios: Para simular o lançamento do dado.
-    -   Estruturas de repetição: Para controlar os turnos dos competidores.
-    -   Condicionais: Para verificar eventos especiais e a condição de vitória.
-    -   Interação com o usuário: Para permitir que o jogador role o dado.
-    -   Lógica de turnos: Alternar entre o jogador e o computador.
-
-Eventos Especiais:
-
-5. Para tornar o jogo mais interessante, algumas posições na pista podem ter eventos especiais:
-○ Avanço extra: Se o competidor parar em uma posição específica (ex.: 5, 10, 15), ele avança +3
-casas.
-○ Recuo: Se o competidor parar em outra posição específica (ex.: 7, 13, 20), ele recua -2 casas.
-○ Rodada extra: Se o competidor tirar 6 no dado, ele ganha uma rodada extra.
 */
+int linhaDeChegada = 30;
+int posicaoJogador = 0;
+int posicaoComputador = 0;
+Random random = new Random();
+
+Console.WriteLine("-------------------------------------------");
+Console.WriteLine("JOGO DE CORRIDA DE DADOS");
+Console.WriteLine("-------------------------------------------");
+
+while (posicaoJogador < linhaDeChegada && posicaoComputador < linhaDeChegada)
+{
+    Console.WriteLine("Pressione Enter Para Rolar o Dado...");
+    Console.ReadLine();
+
+    // Turno do jogador
+    int dadoJogador = random.Next(1, 7);
+    posicaoJogador += dadoJogador;
+    Console.WriteLine($"Você Rolou {dadoJogador}. Sua Posição Atual: {posicaoJogador}");
+
+    // Verificar se o jogador venceu
+    if (posicaoJogador >= linhaDeChegada)
+    {
+        Console.WriteLine("Parabéns! Você Venceu a Corrida!");
+        break;
+    }
+
+    // Turno do computador
+    int dadoComputador = random.Next(1, 7);
+    posicaoComputador += dadoComputador;
+    Console.WriteLine($"O computador Rolou {dadoComputador}. Posição Atual do Computador: {posicaoComputador}");
+
+    // Verificar se o computador venceu
+    if (posicaoComputador >= linhaDeChegada)
+    {
+        Console.WriteLine("O computador Venceu a Corrida! Tente novamente.");
+        break;
+    }
+
+
+}
+
+
+
+
+
+Console.WriteLine("-------------------------------------------");
+Console.WriteLine("Pressione Enter para sair...");
+Console.ReadLine();
