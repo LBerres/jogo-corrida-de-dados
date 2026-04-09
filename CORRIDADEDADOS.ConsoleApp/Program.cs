@@ -40,7 +40,6 @@ Console.ReadLine();
 
 while (posicaoJogador < linhaDeChegada && posicaoComputador < linhaDeChegada)
 {
-    Console.Clear();
     Console.WriteLine("\n-------------------------------------------");
     Console.WriteLine($"Possição Inicial: Jogador = {posicaoJogador} / 30");
     Console.WriteLine($"Possição Inicial: Computador = {posicaoComputador} / 30");
@@ -179,7 +178,6 @@ while (posicaoJogador < linhaDeChegada && posicaoComputador < linhaDeChegada)
             break; // Sair do loop e encerrar o jogo
         }
     }
-
 }
 Console.WriteLine("Pressione Enter para sair...");
 Console.ReadLine();
