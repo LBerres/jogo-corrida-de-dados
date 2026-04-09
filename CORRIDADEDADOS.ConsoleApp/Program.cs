@@ -26,7 +26,7 @@ casas.
 int linhaDeChegada = 30;
 int posicaoJogador = 0;
 int posicaoComputador = 0;
-Random random = new Random();
+Random dado = new Random();
 
 Console.WriteLine("-------------------------------------------");
 Console.WriteLine(" +-------+                    +-------+ ");
@@ -50,7 +50,7 @@ while (posicaoJogador < linhaDeChegada && posicaoComputador < linhaDeChegada)
     Console.ReadLine();
 
     // Turno do jogador
-    int dadoJogador = random.Next(1, 7);
+    int dadoJogador = dado.Next(1, 7);
     posicaoJogador += dadoJogador;
     Console.WriteLine($"Você Rolou {dadoJogador}.");
 
@@ -115,7 +115,7 @@ while (posicaoJogador < linhaDeChegada && posicaoComputador < linhaDeChegada)
     int dadoComputador;
     do
     {
-        dadoComputador = random.Next(1, 7);
+        dadoComputador = dado.Next(1, 7);
         posicaoComputador += dadoComputador;
         Console.WriteLine($"O Computador Rolou {dadoComputador}.");
 
