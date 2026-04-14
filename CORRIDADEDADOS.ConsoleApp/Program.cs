@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 class Program
 {
     // Definição de um Método para Executar a Rodada do Jogador
-    // void = Não Retorna Valor
     static int ExecutarRodadaDoJogador
         (
             int posicaoJogador,
@@ -66,6 +65,60 @@ class Program
         return posicaoJogador;
     }
 
+    // Definição de um Método para Executar a Rodada do Computador
+    static int ExecutarRodadaDoComputador
+        (
+            int posicaoComputador,
+            Random dado
+        )
+
+    {
+        Console.WriteLine("\n-------------------------------------------");
+        Console.WriteLine("Turno do Computador:");
+        Console.WriteLine("\n-------------------------------------------");
+
+        int dadoComputador;
+        do
+        {
+            dadoComputador = dado.Next(1, 7);
+            posicaoComputador += dadoComputador;
+            Console.WriteLine($"O Computador Rolou {dadoComputador}.");
+
+            if (dadoComputador == 6)
+            {
+                Console.WriteLine("\n-------------------------------------------");
+                Console.WriteLine("Acerto CRITICO! O Computador Ganhou uma Rodada Extra!");
+                Console.WriteLine("\n-------------------------------------------");
+                Console.ReadLine();
+                continue; // O computador joga novamente
+            }
+
+            else if (posicaoComputador == 5 || posicaoComputador == 10 || posicaoComputador == 15)
+            {
+                posicaoComputador += 3;
+                Console.WriteLine("\n-------------------------------------------");
+                Console.WriteLine("Evento Especial: Avanço Extra! O Computador Avançou +3 Casas!");
+                Console.WriteLine("\n-------------------------------------------");
+                Console.ReadLine();
+            }
+            else if (posicaoComputador == 7 || posicaoComputador == 13 || posicaoComputador == 20)
+            {
+                posicaoComputador -= 2;
+                if (posicaoComputador < 0) posicaoComputador = 0; // Garantir que a posição não seja negativa
+                Console.WriteLine("\n-------------------------------------------");
+                Console.WriteLine("Evento Especial: Recuo! O Computador Recuou -2 Casas!");
+                Console.WriteLine("\n-------------------------------------------");
+                Console.ReadLine();
+            }
+            else if (posicaoComputador >= 30)
+            {
+                break; // O computador venceu, sair do loop
+            }
+        } while (dadoComputador == 6); // O computador continua jogando enquanto tirar 6
+
+        return posicaoComputador;
+    }
+
     // Método de Ponto de Entrada
     static void Main(string[] args)
     {
@@ -122,49 +175,12 @@ class Program
             Console.WriteLine("Pressione Enter Para Continuar...");
             Console.ReadLine();
 
-            Console.WriteLine("\n-------------------------------------------");
-            Console.WriteLine("Turno do Computador:");
-            Console.WriteLine("\n-------------------------------------------");
-
-            // 3. Turno do computador
-            int dadoComputador;
-            do
-            {
-                dadoComputador = dado.Next(1, 7);
-                posicaoComputador += dadoComputador;
-                Console.WriteLine($"O Computador Rolou {dadoComputador}.");
-
-                if (dadoComputador == 6)
-                {
-                    Console.WriteLine("\n-------------------------------------------");
-                    Console.WriteLine("Acerto CRITICO! O Computador Ganhou uma Rodada Extra!");
-                    Console.WriteLine("\n-------------------------------------------");
-                    Console.ReadLine();
-                    continue; // O computador joga novamente
-                }
-
-                else if (posicaoComputador == 5 || posicaoComputador == 10 || posicaoComputador == 15)
-                {
-                    posicaoComputador += 3;
-                    Console.WriteLine("\n-------------------------------------------");
-                    Console.WriteLine("Evento Especial: Avanço Extra! O Computador Avançou +3 Casas!");
-                    Console.WriteLine("\n-------------------------------------------");
-                    Console.ReadLine();
-                }
-                else if (posicaoComputador == 7 || posicaoComputador == 13 || posicaoComputador == 20)
-                {
-                    posicaoComputador -= 2;
-                    if (posicaoComputador < 0) posicaoComputador = 0; // Garantir que a posição não seja negativa
-                    Console.WriteLine("\n-------------------------------------------");
-                    Console.WriteLine("Evento Especial: Recuo! O Computador Recuou -2 Casas!");
-                    Console.WriteLine("\n-------------------------------------------");
-                    Console.ReadLine();
-                }
-                else if (posicaoComputador >= linhaDeChegada)
-                {
-                    break; // O computador venceu, sair do loop
-                }
-            } while (dadoComputador == 6); // O computador continua jogando enquanto tirar 6
+            // Rodada do computador
+            posicaoComputador = ExecutarRodadaDoComputador
+            (
+                posicaoComputador,
+                dado
+            );
 
             // 4. Verificar se o computador venceu
             if (posicaoComputador >= linhaDeChegada)
