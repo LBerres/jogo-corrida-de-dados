@@ -1,6 +1,7 @@
 ﻿/*
         Estruturação do Código
 */
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
 class Program
@@ -65,13 +66,38 @@ class Program
         return posicaoJogador;
     }
 
+    static void ConfirmacaoDeVitoriaDoJogador
+    (
+        int posicaoJogador,
+        int linhaDeChegada
+    )
+
+    {
+        if (posicaoJogador >= linhaDeChegada)
+        {
+            Console.WriteLine("\n-------------------------------------------");
+            Console.WriteLine(" +-------+                       +-------+ ");
+            Console.WriteLine(" |       |       Parabens!       | o   o | ");
+            Console.WriteLine(" |   o   |      Você Venceu      | o   o | ");
+            Console.WriteLine(" |       |                       | o   o | ");
+            Console.WriteLine(" +-------+                       +-------+ ");
+            Console.WriteLine("\n-------------------------------------------");
+
+        }
+
+        else
+        {
+            Console.WriteLine("Pressione Enter Para Continuar...");
+            Console.ReadLine();
+        }
+    }
+
     // Definição de um Método para Executar a Rodada do Computador
     static int ExecutarRodadaDoComputador
         (
             int posicaoComputador,
             Random dado
         )
-
     {
         Console.WriteLine("\n-------------------------------------------");
         Console.WriteLine("Turno do Computador:");
@@ -119,6 +145,32 @@ class Program
         return posicaoComputador;
     }
 
+    static void ConfirmacaoDeVitoriaDoComputador
+    (
+        int posicaoComputador,
+        int linhaDeChegada
+    )
+
+    {
+        if (posicaoComputador >= linhaDeChegada)
+        {
+            Console.WriteLine("\n-------------------------------------------");
+            Console.WriteLine(" +-------+                       +-------+ ");
+            Console.WriteLine(" |       |  O Computador Venceu! | o   o | ");
+            Console.WriteLine(" |   o   |    Tente Novamente    | o   o | ");
+            Console.WriteLine(" |       |                       | o   o | ");
+            Console.WriteLine(" +-------+                       +-------+ ");
+            Console.WriteLine("\n-------------------------------------------");
+
+        }
+
+        else
+        {
+            Console.WriteLine("Pressione Enter Para Continuar...");
+            Console.ReadLine();
+        }
+    }
+
     // Método de Ponto de Entrada
     static void Main(string[] args)
     {
@@ -147,17 +199,14 @@ class Program
                 dado
             );
 
-            // 2. Verificar se o jogador venceu
+            // Verificar se o jogador venceu
+            ConfirmacaoDeVitoriaDoJogador
+            (
+                posicaoJogador,
+                linhaDeChegada
+            );
             if (posicaoJogador >= linhaDeChegada)
             {
-                Console.WriteLine("\n-------------------------------------------");
-                Console.WriteLine(" +-------+                       +-------+ ");
-                Console.WriteLine(" |       |       Parabens!       | o   o | ");
-                Console.WriteLine(" |   o   |      Você Venceu      | o   o | ");
-                Console.WriteLine(" |       |                       | o   o | ");
-                Console.WriteLine(" +-------+                       +-------+ ");
-                Console.WriteLine("\n-------------------------------------------");
-
                 Console.WriteLine("Gostaria de Jogar Novamente? (s/n)");
                 string resposta = Console.ReadLine().ToLower();
                 if (resposta == "s")
@@ -166,14 +215,14 @@ class Program
                     posicaoJogador = 0;
                     posicaoComputador = 0;
                     Console.WriteLine("Reiniciando o jogo...");
+                    Console.WriteLine("Pressione Enter Para Continuar...");
+                    Console.ReadLine();
                 }
                 else
                 {
                     break; // Sair do loop e encerrar o jogo
                 }
             }
-            Console.WriteLine("Pressione Enter Para Continuar...");
-            Console.ReadLine();
 
             // Rodada do computador
             posicaoComputador = ExecutarRodadaDoComputador
@@ -182,17 +231,14 @@ class Program
                 dado
             );
 
-            // 4. Verificar se o computador venceu
+            // Verificar se o computador venceu
+            ConfirmacaoDeVitoriaDoComputador
+            (
+                posicaoComputador,
+                linhaDeChegada
+            );
             if (posicaoComputador >= linhaDeChegada)
             {
-                Console.WriteLine("-------------------------------------------");
-                Console.WriteLine(" +-------+                       +-------+ ");
-                Console.WriteLine(" |       |  O Computador Venceu! | o   o | ");
-                Console.WriteLine(" |   o   |    Tente Novamente    | o   o | ");
-                Console.WriteLine(" |       |                       | o   o | ");
-                Console.WriteLine(" +-------+                       +-------+ ");
-                Console.WriteLine("\n-------------------------------------------");
-
                 Console.WriteLine("Gostaria de Jogar Novamente? (s/n)");
                 string resposta = Console.ReadLine().ToLower();
                 if (resposta == "s")
