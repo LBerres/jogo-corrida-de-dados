@@ -58,10 +58,10 @@ class Program
                 Console.WriteLine("\n-------------------------------------------");
                 Console.ReadLine();
             }
-                else if (posicaoJogador >= 30)
-                {
-                    break;
-                }
+            else if (posicaoJogador >= 30)
+            {
+                break;
+            }
 
         } while (dadoJogador == 6);
 
@@ -222,6 +222,9 @@ class Program
                 }
                 else
                 {
+                    Console.WriteLine("Obrigado Por Jogar!");
+                    Console.WriteLine("Pressione Enter para sair...");
+                    Console.ReadLine();
                     break; // Sair do loop e encerrar o jogo
                 }
             }
@@ -254,11 +257,12 @@ class Program
                 }
                 else
                 {
+                    Console.WriteLine("Obrigado Por Jogar!");
+                    Console.WriteLine("Pressione Enter para sair...");
+                    Console.ReadLine();
                     break; // Sair do loop e encerrar o jogo
                 }
             }
         }
-        Console.WriteLine("Pressione Enter para sair...");
-        Console.ReadLine();
     }
 }
