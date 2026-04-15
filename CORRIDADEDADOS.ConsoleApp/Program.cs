@@ -15,7 +15,7 @@ class Program
         )
 
     {
-        Console.WriteLine("\n-------------------------------------------");
+        Console.Clear();
         Console.WriteLine($"Possição Inicial: Jogador = {posicaoJogador} / 30");
         Console.WriteLine($"Possição Inicial: Computador = {posicaoComputador} / 30");
         Console.WriteLine("\n-------------------------------------------");
@@ -25,15 +25,11 @@ class Program
         Console.ReadLine();
 
         // 1. Turno do jogador
-        bool rodadaExtra;
-
+        int dadoJogador;
         do
         {
-            rodadaExtra = false;
-
-            int dadoJogador = dado.Next(1, 7);
+            dadoJogador = dado.Next(1, 7);
             posicaoJogador += dadoJogador;
-
             Console.WriteLine($"Você Rolou {dadoJogador}.");
 
             if (dadoJogador == 6)
@@ -42,7 +38,7 @@ class Program
                 Console.WriteLine("Acerto CRITICO! Você Ganhou uma Rodada Extra!");
                 Console.WriteLine("\n-------------------------------------------");
                 Console.ReadLine();
-                rodadaExtra = true; // O jogador joga novamente
+                continue; // O jogador joga novamente
             }
 
             if (posicaoJogador == 5 || posicaoJogador == 10 || posicaoJogador == 15)
@@ -51,6 +47,7 @@ class Program
                 Console.WriteLine("\n-------------------------------------------");
                 Console.WriteLine("Evento Especial: Avanço Extra! Você Avançou +3 Casas!");
                 Console.WriteLine("\n-------------------------------------------");
+                Console.ReadLine();
             }
             else if (posicaoJogador == 7 || posicaoJogador == 13 || posicaoJogador == 20)
             {
@@ -59,9 +56,14 @@ class Program
                 Console.WriteLine("\n-------------------------------------------");
                 Console.WriteLine("Evento Especial: Recuo! Você Recuou -2 Casas!");
                 Console.WriteLine("\n-------------------------------------------");
+                Console.ReadLine();
             }
+                else if (posicaoJogador >= 30)
+                {
+                    break;
+                }
 
-        } while (rodadaExtra);
+        } while (dadoJogador == 6);
 
         return posicaoJogador;
     }
