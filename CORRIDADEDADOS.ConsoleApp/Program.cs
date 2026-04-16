@@ -6,14 +6,11 @@ using System.Security.Cryptography;
 
 class Program
 {
+    public static int linhaDeChegada = 30;
+    public static Random dado = new Random();
     // Método de Ponto de Entrada
     static void Main(string[] args)
     {
-        int linhaDeChegada = 30;
-        int posicaoJogador = 0;
-        int posicaoComputador = 0;
-        Random dado = new Random();
-
         Console.WriteLine("-------------------------------------------");
         Console.WriteLine(" +-------+                    +-------+ ");
         Console.WriteLine(" |       |                    | o   o | ");
@@ -24,75 +21,18 @@ class Program
         Console.WriteLine("Pressione Enter Para Iniciar a Corrida...");
         Console.ReadLine();
 
-        while (posicaoJogador < linhaDeChegada && posicaoComputador < linhaDeChegada)
+        while (Jogador.posicaoJogador < linhaDeChegada && Computador.posicaoComputador < linhaDeChegada)
         {
             // Rodada do jogador
-            posicaoJogador = Jogador.ExecutarRodada
-            (
-                posicaoJogador,
-                posicaoComputador,
-                dado
-            );
+            Jogador.posicaoJogador = Jogador.ExecutarRodada();
             // Verificar se o jogador venceu
-            Jogador.ConfirmacaoDeVitoria
-            (
-                posicaoJogador,
-                linhaDeChegada
-            );
-            if (posicaoJogador >= linhaDeChegada)
-            {
-                Console.WriteLine("Gostaria de Jogar Novamente? (s/n)");
-                string resposta = Console.ReadLine().ToLower();
-                if (resposta == "s")
-                {
-                    Console.Clear();
-                    posicaoJogador = 0;
-                    posicaoComputador = 0;
-                    Console.WriteLine("Reiniciando o jogo...");
-                    Console.WriteLine("Pressione Enter Para Continuar...");
-                    Console.ReadLine();
-                }
-                else
-                {
-                    Console.WriteLine("Obrigado Por Jogar!");
-                    Console.WriteLine("Pressione Enter para sair...");
-                    Console.ReadLine();
-                    break; // Sair do loop e encerrar o jogo
-                }
-            }
+            Jogador.ConfirmacaoDeVitoria();
+
             // Rodada do computador
-            posicaoComputador = Computador.ExecutarRodada
-            (
-                posicaoComputador,
-                dado
-            );
+            Computador.posicaoComputador = Computador.ExecutarRodada();
+
             // Verificar se o computador venceu
-            Computador.ConfirmacaoDeVitoria
-            (
-                posicaoComputador,
-                linhaDeChegada
-            );
-            if (posicaoComputador >= linhaDeChegada)
-            {
-                Console.WriteLine("Gostaria de Jogar Novamente? (s/n)");
-                string resposta = Console.ReadLine().ToLower();
-                if (resposta == "s")
-                {
-                    Console.Clear();
-                    posicaoJogador = 0;
-                    posicaoComputador = 0;
-                    Console.WriteLine("Reiniciando o jogo...");
-                    Console.WriteLine("Pressione Enter Para Continuar...");
-                    Console.ReadLine();
-                }
-                else
-                {
-                    Console.WriteLine("Obrigado Por Jogar!");
-                    Console.WriteLine("Pressione Enter para sair...");
-                    Console.ReadLine();
-                    break; // Sair do loop e encerrar o jogo
-                }
-            }
+            Computador.ConfirmacaoDeVitoria();
         }
     }
 }

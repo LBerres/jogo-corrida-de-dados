@@ -3,18 +3,13 @@
 */
 class Jogador
 {
+    public static int posicaoJogador = 0;
     // Definição de um Método para Executar a Rodada do Jogador
-    public static int ExecutarRodada
-        (
-            int posicaoJogador,
-            int posicaoComputador,
-            Random dado
-        )
-
+    public static int ExecutarRodada()
     {
         Console.Clear();
         Console.WriteLine($"Possição Inicial: Jogador = {posicaoJogador} / 30");
-        Console.WriteLine($"Possição Inicial: Computador = {posicaoComputador} / 30");
+        Console.WriteLine($"Possição Inicial: Computador = {Computador.posicaoComputador} / 30");
         Console.WriteLine("\n-------------------------------------------");
         Console.WriteLine("Turno do Jogador:");
         Console.WriteLine("\n-------------------------------------------");
@@ -25,7 +20,7 @@ class Jogador
         int dadoJogador;
         do
         {
-            dadoJogador = dado.Next(1, 7);
+            dadoJogador = Program.dado.Next(1, 7);
             posicaoJogador += dadoJogador;
             Console.WriteLine($"Você Rolou {dadoJogador}.");
 
@@ -65,14 +60,9 @@ class Jogador
         return posicaoJogador;
     }
 
-    public static void ConfirmacaoDeVitoria
-    (
-        int posicaoJogador,
-        int linhaDeChegada
-    )
-
+    public static void ConfirmacaoDeVitoria()
     {
-        if (posicaoJogador >= linhaDeChegada)
+        if (posicaoJogador >= Program.linhaDeChegada)
         {
             Console.WriteLine("\n-------------------------------------------");
             Console.WriteLine(" +-------+                       +-------+ ");
@@ -89,6 +79,27 @@ class Jogador
             Console.WriteLine("Pressione Enter Para Continuar...");
             Console.ReadLine();
         }
-    }
 
+    if (Jogador.posicaoJogador >= Program.linhaDeChegada)
+        {
+            Console.WriteLine("Gostaria de Jogar Novamente? (s/n)");
+            string resposta = Console.ReadLine().ToLower();
+            if (resposta == "s")
+            {
+                Console.Clear();
+                posicaoJogador = 0;
+                Computador.posicaoComputador = 0;
+                Console.WriteLine("Reiniciando o jogo...");
+                Console.WriteLine("Pressione Enter Para Continuar...");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("Obrigado Por Jogar!");
+                Console.WriteLine("Pressione Enter para sair...");
+                Console.ReadLine();
+                return; // Sair do loop e encerrar o jogo
+            }
+        }
+    }
 }
