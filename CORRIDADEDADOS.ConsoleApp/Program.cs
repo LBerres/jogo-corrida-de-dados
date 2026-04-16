@@ -25,6 +25,7 @@ class Program
         {
             // Rodada do jogador
             Jogador.posicaoJogador = Jogador.ExecutarRodada();
+
             // Verificar se o jogador venceu
             Jogador.ConfirmacaoDeVitoria();
 
