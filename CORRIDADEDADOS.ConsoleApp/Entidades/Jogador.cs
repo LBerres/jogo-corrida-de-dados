@@ -1,6 +1,3 @@
-/*
-        Estruturação do Código
-*/
 class Jogador
 {
     public static int posicaoJogador = 0;
@@ -80,7 +77,7 @@ class Jogador
             Console.ReadLine();
         }
 
-    if (Jogador.posicaoJogador >= Program.linhaDeChegada)
+        if (Jogador.posicaoJogador >= Program.linhaDeChegada)
         {
             Console.WriteLine("Gostaria de Jogar Novamente? (s/n)");
             string resposta = Console.ReadLine().ToLower();

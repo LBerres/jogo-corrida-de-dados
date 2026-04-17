@@ -1,6 +1,3 @@
-/*
-        Estruturação do Código
-*/
 class Computador
 {
     public static int posicaoComputador = 0;

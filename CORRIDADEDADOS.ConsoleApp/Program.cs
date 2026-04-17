@@ -11,15 +11,7 @@ class Program
     // Método de Ponto de Entrada
     static void Main(string[] args)
     {
-        Console.WriteLine("-------------------------------------------");
-        Console.WriteLine(" +-------+                    +-------+ ");
-        Console.WriteLine(" |       |                    | o   o | ");
-        Console.WriteLine(" |   o   |  CORRIDA DE DADOS  | o   o | ");
-        Console.WriteLine(" |       |                    | o   o | ");
-        Console.WriteLine(" +-------+                    +-------+ ");
-        Console.WriteLine("-------------------------------------------");
-        Console.WriteLine("Pressione Enter Para Iniciar a Corrida...");
-        Console.ReadLine();
+        Abertura.abertura();
 
         while (Jogador.posicaoJogador < linhaDeChegada && Computador.posicaoComputador < linhaDeChegada)
         {
