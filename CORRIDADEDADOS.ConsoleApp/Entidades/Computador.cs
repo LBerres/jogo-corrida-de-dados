@@ -70,7 +70,7 @@ class Computador
             Console.ReadLine();
         }
 
-        if (Computador.posicaoComputador >= Program.linhaDeChegada)
+        if (posicaoComputador >= Program.linhaDeChegada)
         {
             Console.WriteLine("Gostaria de Jogar Novamente? (s/n)");
             string resposta = Console.ReadLine().ToLower();
@@ -78,7 +78,7 @@ class Computador
             {
                 Console.Clear();
                 Jogador.posicaoJogador = 0;
-                Computador.posicaoComputador = 0;
+                posicaoComputador = 0;
                 Console.WriteLine("Reiniciando o jogo...");
                 Console.WriteLine("Pressione Enter Para Continuar...");
                 Console.ReadLine();
@@ -88,7 +88,7 @@ class Computador
                 Console.WriteLine("Obrigado Por Jogar!");
                 Console.WriteLine("Pressione Enter para sair...");
                 Console.ReadLine();
-                return; // Sair do loop e encerrar o jogo
+                Environment.Exit(0); // Sair do loop e encerrar o jogo
             }
         }
     }

@@ -77,7 +77,7 @@ class Jogador
             Console.ReadLine();
         }
 
-        if (Jogador.posicaoJogador >= Program.linhaDeChegada)
+        if (posicaoJogador >= Program.linhaDeChegada)
         {
             Console.WriteLine("Gostaria de Jogar Novamente? (s/n)");
             string resposta = Console.ReadLine().ToLower();
@@ -95,7 +95,7 @@ class Jogador
                 Console.WriteLine("Obrigado Por Jogar!");
                 Console.WriteLine("Pressione Enter para sair...");
                 Console.ReadLine();
-                return; // Sair do loop e encerrar o jogo
+                Environment.Exit(0); // Sair do loop e encerrar o jogo
             }
         }
     }
